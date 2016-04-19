@@ -12,6 +12,7 @@ import MySQLdb
 import sys
 import pika
 import os
+import re
 
 # Define constants for the database
 DATABASE_NAME = "mapdn"
@@ -19,6 +20,7 @@ DATABASE_USERNAME = "admindn"
 DATABASE_PASSWORD_FILE = "~amaharry/mapdn/admindn"
 DATABASE_HOST = "xio29.ten.osc.edu"
 MAX_DN_LENGTH = 255
+VALID_DN_CHARS = "^[A-Za-z0-9:/,.@\(\)\-+='_ ]+$"
 
 # Define constants for the AMQP Exchange. Uncomment whem functionality is added
 # EXCHANGE_HOST = "localhost"
@@ -53,6 +55,9 @@ def main():
         if len(args.dn) > MAX_DN_LENGTH:
             print("ERROR: Distinguished Name of length %d is longer than " \
                     "maximum length %d" %(len(args.dn), MAX_DN_LENGTH))
+            sys.exit(1)
+        if not re.match(VALID_DN_CHARS,args.dn):
+            print ("ERROR:  Invalid character in Distinguished Name")
             sys.exit(1)
 
     # Check that at least one operation (add, delete, or export) was chosen
