@@ -20,7 +20,7 @@ DATABASE_USERNAME = "admindn"
 DATABASE_PASSWORD_FILE = "~amaharry/mapdn/admindn"
 DATABASE_HOST = "xio29.ten.osc.edu"
 MAX_DN_LENGTH = 255
-VALID_DN_CHARS = "^[A-Za-z0-9:/,.@\(\)\-+_ ]+$"
+VALID_DN_CHARS = "^[A-Za-z0-9:/,.@\(\)\-+='_ ]+$"
 
 # Define constants for the AMQP Exchange. Uncomment whem functionality is added
 # EXCHANGE_HOST = "localhost"
