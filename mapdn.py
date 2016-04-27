@@ -87,7 +87,8 @@ def main():
                                                              args.user))
             isDatabaseChanged = True
         except MySQLdb.IntegrityError:
-            print("ERROR: Distinguished name is already mapped")
+            print("WARNING: Distinguished name is already mapped")
+            sys.exit(1)
     elif args.delete:
         # Determine if this entry already exists
         c.execute("SELECT dn, user FROM dnusermap WHERE dn=%s AND user=%s", \
